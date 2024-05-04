@@ -1,0 +1,9 @@
+export { default as Admins } from "./admins/Admins";
+export { default as Auth } from "./auth/Auth";
+export { default as Login } from "./auth/Login";
+export { default as Signup } from "./auth/Signup";
+export { default as Customers } from "./customers/Customers";
+export { default as Orders } from "./orders/Orders";
+export { default as OrderDetails } from "./orders/OrderDetails";
+export { default as Products } from "./products/Products";
+export { default as ProductDetails } from "./products/ProductDetails";
