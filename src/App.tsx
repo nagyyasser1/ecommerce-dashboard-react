@@ -1,41 +1,50 @@
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Layout, NotFound, OverView } from "./components";
 import {
+  AdminDetails,
   Admins,
   Auth,
+  CustomerDetails,
   Customers,
+  Forgot,
   Login,
   OrderDetails,
   Orders,
   ProductDetails,
   Products,
+  Reset,
   Signup,
 } from "./features";
 
 function App() {
   return (
     <div className="app">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<OverView />} />
-            <Route path="products" element={<Products />}>
-              <Route path=":productId" element={<ProductDetails />} />
-            </Route>
-            <Route path="/orders" element={<Orders />}>
-              <Route path=":orderId" element={<OrderDetails />} />
-            </Route>
-            <Route path="/customers" element={<Customers />} />
-            <Route path="/admins" element={<Admins />} />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<OverView />} />
+          <Route path="products" element={<Products />}>
+            <Route path=":productId" element={<ProductDetails />} />
           </Route>
-          <Route path="/auth" element={<Auth />}>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
+          <Route path="/orders" element={<Orders />}>
+            <Route path=":orderId" element={<OrderDetails />} />
           </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+          <Route path="/customers" element={<Customers />}>
+            <Route path=":customerId" element={<CustomerDetails />} />
+          </Route>
+          <Route path="/admins" element={<Admins />}>
+            <Route path=":adminId" element={<AdminDetails />} />
+          </Route>
+        </Route>
+        <Route path="/auth">
+          <Route index element={<Auth />} />
+          <Route path="signin" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="forgot" element={<Forgot />} />
+          <Route path="reset" element={<Reset />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 }

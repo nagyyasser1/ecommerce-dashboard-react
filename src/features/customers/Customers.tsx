@@ -1,5 +1,14 @@
+import { Outlet } from "react-router-dom";
+
 const Customers = () => {
-  return <div>Customers</div>;
+  return (
+    <div>
+      <h1>Customers</h1>
+      <div>
+        <Outlet />
+      </div>
+    </div>
+  );
 };
 
 export default Customers;

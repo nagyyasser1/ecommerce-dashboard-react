@@ -1,0 +1,92 @@
+.reset {
+  background-color: #f5f7fa;
+  height: 100vh;
+  display: flex;
+  align-content: center;
+}
+
+.formContainer {
+  width: 30%;
+  margin: auto;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 4px;
+}
+
+.formHeader p {
+  margin-top: 0.5rem;
+  color: rgb(105, 115, 121);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formControl {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.formControl input {
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+.from_forgot {
+  text-align: right;
+  margin-top: 1rem;
+}
+
+.formAction {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.formAction button {
+  width: 100%;
+  font-size: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+  background-color: #ffd333;
+  border: none;
+}
+
+.formFooter_Link {
+  margin-top: 1rem;
+  text-align: center;
+  color: rgb(105, 115, 121);
+}
+
+/* Large Screens (Desktops) */
+@media (min-width: 1200px) {
+  .formContainer {
+    width: 33.33%; /* Adjust for 4 equal columns */
+  }
+}
+
+/* Medium Screens (Laptops) */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .formContainer {
+    width: 45%; /* Adjust for 3 equal columns */
+  }
+}
+
+/* Tablets */
+@media (max-width: 767px) and (min-width: 480px) {
+  .formContainer {
+    width: 60%; /* Adjust for 2 equal columns */
+  }
+}
+
+/* Mobile Phones */
+@media (max-width: 479px) {
+  .formContainer {
+    width: 100%; /* Set full width for mobile phones */
+  }
+}

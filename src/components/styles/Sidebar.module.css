@@ -1,0 +1,117 @@
+.sidebar {
+  height: 100vh;
+  background-color: #3d464d;
+  position: relative;
+  max-width: 300px; /* Added */
+  min-width: 250px; /* Added */
+  flex: 0 0 25%; /* Added */
+}
+
+.sidebar_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffd333;
+  padding: 0.7rem 1rem;
+  color: #3d464d;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sidebar_header h2 {
+  cursor: pointer;
+  font-weight: 300;
+  color: #5a646d;
+}
+
+.sidebar_header h2 span {
+  color: rgb(240, 43, 43);
+}
+
+.sidebar_header p {
+  background-color: #f5f7fa;
+  padding: 0.3rem 0.7rem;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.sidebar_section {
+  padding: 1rem;
+}
+
+.sidebar_section p a {
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar_list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar_list li {
+  padding: 0.5rem;
+  cursor: pointer;
+  color: white;
+}
+
+.sidebar_listItem_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar_listItem_header div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.list_container {
+  display: none;
+}
+
+.list_container.open {
+  display: block;
+}
+
+.list_container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list_container li {
+  padding: 0.4rem;
+  border-bottom: none;
+  padding-left: 2rem;
+}
+
+.list_container li a {
+  color: white;
+  text-decoration: none;
+}
+
+.list_container li a:hover {
+  color: #ffd333;
+}
+
+.sidebar_list_arrow_down {
+  transform: rotate(-90deg);
+  transition: 0.2s;
+}
+
+.sidebar_list_arrow_left {
+  transform: rotate(0deg);
+  transition: 0.2s;
+}
+
+@media (max-width: 740px) {
+  .sidebar {
+    max-width: 300px;
+    min-width: 250px;
+    flex: 0 0 25%;
+    background-color: #3d464d;
+  }
+}
