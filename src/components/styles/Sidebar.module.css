@@ -2,9 +2,12 @@
   height: 100vh;
   background-color: #3d464d;
   position: relative;
-  max-width: 300px; /* Added */
-  min-width: 250px; /* Added */
-  flex: 0 0 25%; /* Added */
+  width: 250px;
+  transition: left 1s ease-in-out;
+}
+
+.sidebar_left {
+  transition: left 1s ease-in-out;
 }
 
 .sidebar_header {
@@ -14,23 +17,23 @@
   background-color: #ffd333;
   padding: 0.7rem 1rem;
   color: #3d464d;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.sidebar_header h2 {
+.sidebar_header h3 {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   cursor: pointer;
-  font-weight: 300;
+  font-weight: 600;
   color: #5a646d;
 }
 
-.sidebar_header h2 span {
-  color: rgb(240, 43, 43);
+.sidebar_header h3 span {
+  color: rgb(255, 0, 0);
 }
 
 .sidebar_header p {
-  background-color: #f5f7fa;
+  background-color: white;
   padding: 0.3rem 0.7rem;
-  border-radius: 2px;
+  border-radius: 3px;
   cursor: pointer;
   font-size: 0.9rem;
 }
@@ -48,6 +51,39 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  overflow-y: scroll;
+  height: 84vh;
+}
+
+.sidebar_list::-webkit-scrollbar {
+  /* For Chrome, Safari, etc. */
+  width: 3px; /* Set the width of the scrollbar */
+}
+
+.sidebar_list::-moz-scrollbar {
+  /* For Firefox */
+  width: 3px;
+}
+
+.sidebar_list::-webkit-scrollbar-track {
+  /* For Chrome, Safari, etc. */
+  background: #3d464d; /* Set the background color of the track */
+}
+
+.sidebar_list::-moz-scrollbar-track {
+  /* For Firefox */
+  background: #3d464d;
+}
+
+.sidebar_list::-webkit-scrollbar-thumb {
+  /* For Chrome, Safari, etc. */
+  background: rgb(199, 199, 199); /* Set the background color of the thumb */
+  /* Add a rounded corner to the thumb */
+}
+
+.sidebar_list::-moz-scrollbar-thumb {
+  /* For Firefox */
+  background: rgb(199, 199, 199);
 }
 
 .sidebar_list li {
@@ -109,9 +145,7 @@
 
 @media (max-width: 740px) {
   .sidebar {
-    max-width: 300px;
-    min-width: 250px;
-    flex: 0 0 25%;
+    width: 250px;
     background-color: #3d464d;
   }
 }

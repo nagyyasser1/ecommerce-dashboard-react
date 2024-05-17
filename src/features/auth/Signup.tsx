@@ -1,19 +1,19 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdOutlineVisibilityOff } from "react-icons/md";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import styles from "./styles/Signup.module.css";
-import { useSignupMutation } from "./authApiSlice";
+import { useSignupMutation } from "../../app/services/auth";
 
 const schema = yup
   .object({
-    firstName: yup
+    fname: yup
       .string()
       .required()
       .min(3, "First name must be at least 3 characters"),
-    lastName: yup
+    lname: yup
       .string()
       .required()
       .min(3, "Last name must be at least 3 characters"),
@@ -30,8 +30,8 @@ const schema = yup
   .required();
 
 interface SignupFormData {
-  firstName: string;
-  lastName: string;
+  fname: string;
+  lname: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -40,7 +40,8 @@ interface SignupFormData {
 const Signup: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setConfirmShowPassword] = useState(false);
-  const [signup, { isLoading, error }] = useSignupMutation();
+
+  const navigate = useNavigate();
 
   const {
     register,
@@ -48,22 +49,14 @@ const Signup: React.FC = () => {
     formState: { errors },
   } = useForm<SignupFormData>({
     defaultValues: {
-      firstName: "",
-      lastName: "",
+      fname: "",
+      lname: "",
       email: "",
       password: "",
       confirmPassword: "",
     },
     resolver: yupResolver(schema),
   });
-
-  const onSubmit: SubmitHandler<SignupFormData> = (data) => {
-    try {
-      signup(data).unwrap();
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
@@ -73,25 +66,42 @@ const Signup: React.FC = () => {
     setConfirmShowPassword(!showConfirmPassword);
   };
 
+  const [signup, { isLoading, isSuccess, isError, error }] =
+    useSignupMutation();
+
+  const onSubmit: SubmitHandler<SignupFormData> = async (data) => {
+    try {
+      const user = await signup(data).unwrap();
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <section className={styles.signup}>
       <div className={styles.formContainer}>
         <div className={styles.formHeader}>
           <h1> Sign Up </h1>
           <p>Fill out the form to create a new account.</p>
-          {error && <p className={styles.passwordError}>{error}</p>}
+          {isError && (
+            <span className={styles.passwordError}>{error?.data?.message}</span>
+          )}
+          {isSuccess && (
+            <span className={styles.successText}>Logged in Successfully!</span>
+          )}
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
           <div className={styles.formControl}>
             <label htmlFor="firstName">First Name</label>
-            <input type="text" {...register("firstName", { required: true })} />
-            <p className={styles.passwordError}>{errors.firstName?.message}</p>
+            <input type="text" {...register("fname", { required: true })} />
+            <p className={styles.passwordError}>{errors.fname?.message}</p>
           </div>
 
           <div className={styles.formControl}>
             <label htmlFor="lastName">Last Name</label>
-            <input type="text" {...register("lastName", { required: true })} />
-            <p className={styles.passwordError}>{errors.lastName?.message}</p>
+            <input type="text" {...register("lname", { required: true })} />
+            <p className={styles.passwordError}>{errors.lname?.message}</p>
           </div>
           <div className={styles.formControl}>
             <label htmlFor="email">Email</label>

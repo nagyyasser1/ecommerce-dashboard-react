@@ -21,6 +21,10 @@
   color: rgb(105, 115, 121);
 }
 
+.successText {
+  color: rgb(0, 118, 0);
+}
+
 .form {
   display: flex;
   flex-direction: column;

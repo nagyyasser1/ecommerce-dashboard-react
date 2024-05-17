@@ -6,8 +6,8 @@ import {
 import { setCredentials, logOut } from "../../features/auth/authSlice";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:3500",
-  credentials: "include",
+  baseUrl: "http://localhost:5000",
+  // credentials: "include",
   prepareHeaders: (headers, { getState }: any) => {
     const token = getState().auth.token;
     if (token) {
@@ -27,7 +27,11 @@ const baseQueryWithReauth = async (
   if (result?.error?.originalStatus === 403) {
     console.log("sending refresh token");
     // send refresh token to get new access token
-    const refreshResult: any = await baseQuery("/refresh", api, extraOptions);
+    const refreshResult: any = await baseQuery(
+      "/auth/refresh",
+      api,
+      extraOptions
+    );
     console.log(refreshResult);
     if (refreshResult?.data) {
       const user = api.getState().auth.user;

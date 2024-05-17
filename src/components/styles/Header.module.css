@@ -5,14 +5,38 @@
   right: 0;
   left: 0;
   box-shadow: 20px 1px 4px rgba(0, 0, 0, 0.1);
-  padding: 0.67rem;
   text-align: right;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-left: 1rem;
 }
 
 .header_menu {
   font-size: 1.6rem;
   cursor: pointer;
+}
+
+.header_profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.38rem;
+  cursor: pointer;
+  text-align: left;
+  transition: 0.5s;
+}
+
+.header_profile:hover {
+  background-color: #dfe1e5;
+}
+
+.header_profile_icon {
+  font-size: 2rem;
+  color: #ffd333;
+}
+
+.header_profile_info span {
+  font-size: 0.7rem;
+  color: gray;
 }

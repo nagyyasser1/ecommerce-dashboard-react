@@ -1,8 +1,8 @@
 import styles from "./styles/Sidebar.module.css";
 import SidebarListItem from "./SidebarListItem";
 import { Link } from "react-router-dom";
-import { useAppDispatch } from "../app/hooks";
-import { toggleMenu } from "../features/appSlice";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { selectIsMenuOpend, toggleMenu } from "../features/appSlice";
 
 interface Item {
   name: string;
@@ -20,6 +20,13 @@ const categories: Category[] = [
     items: [
       { name: "product list", path: "products" },
       { name: "product details", path: "products/5" },
+    ],
+  },
+  {
+    title: "Categories",
+    items: [
+      { name: "product list", path: "categories" },
+      { name: "product details", path: "category/5" },
     ],
   },
   {
@@ -54,6 +61,7 @@ const categories: Category[] = [
 ];
 
 const Sidebar = () => {
+  const isMenuOpend = useAppSelector(selectIsMenuOpend);
   const dispatch = useAppDispatch();
 
   const handleOverLayClicked = () => {
@@ -61,11 +69,11 @@ const Sidebar = () => {
   };
 
   return (
-    <div className={styles.sidebar}>
+    <div className={`${styles.sidebar} ${isMenuOpend && styles.sidebar_left}`}>
       <div className={styles.sidebar_header}>
-        <h2>
-          <span>K</span>arezma
-        </h2>
+        <h3>
+          <span>K`</span>AREZMA
+        </h3>
         <p>admin</p>
       </div>
       <div className={styles.sidebar_section}>

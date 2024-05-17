@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../app/hooks";
 import { setCredentials } from "./authSlice";
-import { useLoginMutation } from "./authApiSlice";
+import { useLoginMutation } from "../../app/services/auth";
 import styles from "./styles/Login.module.css";
 
 import { MdOutlineVisibilityOff } from "react-icons/md";
@@ -38,18 +38,27 @@ const Login: React.FC = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<LoginFormData> = (data) => console.log(data);
-
   const [showPassword, setShowPassword] = useState(false);
+
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const [login, { isLoading, isSuccess, isError, error }] = useLoginMutation();
 
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
   };
 
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-
-  const [login, { isLoading }] = useLoginMutation();
+  const onSubmit: SubmitHandler<LoginFormData> = async (data) => {
+    try {
+      const userData = await login(data).unwrap();
+      console.log(userData);
+      dispatch(setCredentials({ ...userData }));
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <section className={styles.login}>
@@ -57,6 +66,12 @@ const Login: React.FC = () => {
         <div className={styles.formHeader}>
           <h2>Sign In</h2>
           <p>Log in to your account to continue.</p>
+          {isError && (
+            <span className={styles.passwordError}>{error?.data?.message}</span>
+          )}
+          {isSuccess && (
+            <span className={styles.successText}>Logged in Successfully!</span>
+          )}
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
           <div className={styles.formControl}>
@@ -91,7 +106,9 @@ const Login: React.FC = () => {
           </div>
 
           <div className={styles.formAction}>
-            <button type="submit">Sign In</button>
+            <button type="submit" disabled={isLoading}>
+              {isLoading ? "Loading..." : "Sign In"}
+            </button>
           </div>
         </form>
         <div className={styles.formFooter}>

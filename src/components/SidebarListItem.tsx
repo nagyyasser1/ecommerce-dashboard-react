@@ -1,5 +1,11 @@
 import { AiOutlineProduct } from "react-icons/ai";
-import { FaArrowLeft, FaUserShield, FaUsers } from "react-icons/fa";
+import {
+  FaArrowLeft,
+  FaUserShield,
+  FaUsers,
+  FaUserSecret,
+} from "react-icons/fa";
+import { MdOutlineCategory } from "react-icons/md";
 import styles from "./styles/Sidebar.module.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -12,7 +18,7 @@ const SidebarListItem = ({ title, items }: any) => {
   const dispatch = useAppDispatch();
 
   const handleOverLayClicked = () => {
-    dispatch(toggleMenu());
+    if (window.innerWidth <= 740) dispatch(toggleMenu());
   };
 
   const handleClicked = () => {
@@ -29,6 +35,10 @@ const SidebarListItem = ({ title, items }: any) => {
             <IoMdCart />
           ) : title === "Customers" ? (
             <FaUsers />
+          ) : title === "Categories" ? (
+            <MdOutlineCategory />
+          ) : title === "Admins" ? (
+            <FaUserSecret />
           ) : (
             <FaUserShield />
           )}

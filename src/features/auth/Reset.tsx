@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../app/hooks";
 import { setCredentials } from "./authSlice";
-import { useLoginMutation } from "./authApiSlice";
+import { useLoginMutation } from "../../app/services/auth";
 import styles from "./styles/Reset.module.css";
 
 interface ResetForm {
