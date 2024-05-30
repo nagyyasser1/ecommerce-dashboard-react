@@ -1,18 +1,35 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import styles from "./styles/Layout.module.css";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { selectIsMenuOpend, toggleMenu } from "../features/appSlice";
 import Header from "./Header";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useRefreshTokenMutation } from "../app/services/auth";
 
 const Layout = () => {
+  const [refresh, { isLoading }] = useRefreshTokenMutation();
   const isMenuOpend = useAppSelector(selectIsMenuOpend);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
 
   const handleOverLayClicked = () => {
     dispatch(toggleMenu());
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await refresh({}).unwrap();
+        setIsInitialLoading(false);
+      } catch (error) {
+        console.error("Error refreshing token:", error);
+        navigate("/auth/signin");
+      }
+    };
+    fetchData();
+  }, [refresh]);
 
   useEffect(() => {
     if (isMenuOpend) {
@@ -21,6 +38,14 @@ const Layout = () => {
       document.body.classList.remove(styles.with_sidebar);
     }
   }, [isMenuOpend]);
+
+  if (isInitialLoading || isLoading) {
+    return (
+      <div className={styles.spinnerContainer}>
+        <div className={styles.spinner}></div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.layout}>

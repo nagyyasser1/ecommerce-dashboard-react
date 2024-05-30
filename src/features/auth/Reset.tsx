@@ -1,41 +1,62 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../app/hooks";
-import { setCredentials } from "./authSlice";
-import { useLoginMutation } from "../../app/services/auth";
+import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useResetPasswordMutation } from "../../app/services/auth";
 import styles from "./styles/Reset.module.css";
 
-interface ResetForm {
+import { useForm, SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup
+  .object({
+    token: yup.string().required(),
+    password: yup
+      .string()
+      .required()
+      .min(8, "Password must be at least 8 characters"),
+    confirmPassword: yup
+      .string()
+      .required()
+      .oneOf([yup.ref("password")], "Passwords must match"),
+  })
+  .required();
+
+interface RestPasswordFormData {
+  token: string;
   password: string;
   confirmPassword: string;
 }
 
 const Reset: React.FC = () => {
-  const [formData, setFormData] = useState<ResetForm>({
-    password: "",
-    confirmPassword: "",
-  });
+  const { token } = useParams();
 
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
-  const [login, { isLoading }] = useLoginMutation();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RestPasswordFormData>({
+    defaultValues: {
+      token,
+      password: "",
+      confirmPassword: "",
+    },
+    resolver: yupResolver(schema),
+  });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
+  const [resetPassword, { isLoading, error }] = useResetPasswordMutation();
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
+  const onSubmit: SubmitHandler<RestPasswordFormData> = async (data) => {
     try {
-      const userData = await login(formData).unwrap();
-      // dispatch(setCredentials({ ...userData, user }))
+      await resetPassword(data).unwrap();
+      navigate("/auth/signin");
     } catch (error) {
-      console.error("Error:", error);
+      console.log(error);
     }
   };
+
+  console.log(error);
 
   return (
     <section className={styles.reset}>
@@ -44,30 +65,43 @@ const Reset: React.FC = () => {
           <h2>Reset Password</h2>
           <p>Please enter your new password.</p>
         </div>
-        <form onSubmit={handleSubmit} className={styles.form}>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
           <div className={styles.formControl}>
             <label htmlFor="password">Password</label>
             <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
+              {...register("password", {
+                pattern:
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
+                required: "this is required",
+                minLength: {
+                  value: 8,
+                  message: "min lenght is 8",
+                },
+              })}
             />
+            <p className={styles.error_message}>{errors.password?.message}</p>
           </div>
 
           <div className={styles.formControl}>
             <label htmlFor="confirmPassword">Confirm Password</label>
             <input
               type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
+              {...register("confirmPassword", {
+                pattern:
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
+                required: "this is required",
+                minLength: {
+                  value: 8,
+                  message: "min lenght is 8",
+                },
+              })}
             />
+            <p className={styles.error_message}>{errors.password?.message}</p>
           </div>
           <div className={styles.formAction}>
-            <button type="submit">Reset</button>
+            <button type="submit" disabled={isLoading}>
+              {isLoading ? "Loading..." : "Reset"}
+            </button>
           </div>
         </form>
       </div>

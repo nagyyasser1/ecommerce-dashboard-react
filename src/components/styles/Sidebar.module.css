@@ -19,18 +19,17 @@
   color: #3d464d;
 }
 
-.sidebar_header h3 {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+.sidebar_header p {
   cursor: pointer;
-  font-weight: 600;
   color: #5a646d;
 }
 
-.sidebar_header h3 span {
+.sidebar_header p span {
+  font-size: 1.5rem;
   color: rgb(255, 0, 0);
 }
 
-.sidebar_header p {
+.sidebar_header_btn {
   background-color: white;
   padding: 0.3rem 0.7rem;
   border-radius: 3px;

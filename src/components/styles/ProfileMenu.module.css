@@ -1,0 +1,35 @@
+.profileMenu {
+  position: absolute;
+  top: 55px; /* Adjust based on your header height */
+  right: 15px; /* Adjust to align with your profile section */
+  background: white;
+  border: 1px solid #ddd;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  border-radius: 5px;
+  width: 15rem;
+  text-align: left;
+}
+
+.profileMenu ul {
+  list-style: none;
+}
+
+.profileMenu ul li:hover {
+  color: rgb(231, 206, 19);
+}
+
+.logoutButton {
+  color: gray;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: white;
+}
+
+.logoutButton:hover {
+  color: rgb(231, 206, 19);
+}

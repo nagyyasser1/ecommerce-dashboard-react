@@ -57,6 +57,10 @@
   border: none;
 }
 
+.success_message {
+  color: green;
+}
+
 .formFooter_Link {
   margin-top: 1rem;
   text-align: center;

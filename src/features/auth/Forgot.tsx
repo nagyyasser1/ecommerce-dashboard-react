@@ -1,37 +1,42 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../app/hooks";
-import { setCredentials } from "./authSlice";
-import { useLoginMutation } from "../../app/services/auth";
+import React from "react";
+import { Link } from "react-router-dom";
+import { useForgotPasswordMutation } from "../../app/services/auth";
 import styles from "./styles/Forgot.module.css";
 
-interface ForgotForm {
+import { useForm, SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup
+  .object({
+    email: yup.string().email("Invalid email format").required(),
+  })
+  .required();
+
+interface ForgotFormData {
   email: string;
 }
 
 const Forgot: React.FC = () => {
-  const [formData, setFormData] = useState<ForgotForm>({
-    email: "",
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ForgotFormData>({
+    defaultValues: {
+      email: "",
+    },
+    resolver: yupResolver(schema),
   });
 
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  const [forgotPassword, { isLoading, isSuccess }] =
+    useForgotPasswordMutation();
 
-  const [login, { isLoading }] = useLoginMutation();
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
+  const onSubmit: SubmitHandler<ForgotFormData> = async (data) => {
     try {
-      const userData = await login(formData).unwrap();
-      // dispatch(setCredentials({ ...userData, user }))
-    } catch (error) {
-      console.error("Error:", error);
+      await forgotPassword(data).unwrap();
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -45,19 +50,26 @@ const Forgot: React.FC = () => {
             send a link to reset your password.
           </p>
         </div>
-        <form onSubmit={handleSubmit} className={styles.form}>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+          {isSuccess && (
+            <p className={styles.success_message}>
+              We have send email successfully.
+            </p>
+          )}
           <div className={styles.formControl}>
             <label htmlFor="email">Email:</label>
             <input
+              {...register("email", { required: true })}
               type="email"
               id="email"
               name="email"
-              value={formData.email}
-              onChange={handleChange}
             />
+            <p className={styles.passwordError}>{errors.email?.message}</p>
           </div>
           <div className={styles.formAction}>
-            <button type="submit">Reset Password</button>
+            <button type="submit" disabled={isLoading}>
+              {isLoading ? "Loading..." : "Reset Password"}
+            </button>
           </div>
         </form>
         <div className={styles.formFooter}>

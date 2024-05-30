@@ -4,8 +4,8 @@ import { RootState } from "../../app/store";
 
 type User = {
   id: string;
-  fullName: string;
-  username: string;
+  fname: string;
+  lname: string;
   email: string;
   gender: number;
   profilePic: string;
@@ -20,8 +20,8 @@ const initialState: AuthState = {
   token: "",
   user: {
     id: "",
-    fullName: "",
-    username: "",
+    fname: "",
+    lname: "",
     email: "",
     gender: 0,
     profilePic: "",
@@ -43,8 +43,8 @@ const authSlice = createSlice({
     logOut: (state) => {
       (state.user = {
         id: "",
-        fullName: "",
-        username: "",
+        fname: "",
+        lname: "",
         email: "",
         gender: 0,
         profilePic: "",

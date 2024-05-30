@@ -52,8 +52,7 @@ const Login: React.FC = () => {
   const onSubmit: SubmitHandler<LoginFormData> = async (data) => {
     try {
       const userData = await login(data).unwrap();
-      console.log(userData);
-      dispatch(setCredentials({ ...userData }));
+      dispatch(setCredentials(userData));
       navigate("/");
     } catch (err) {
       console.log(err);

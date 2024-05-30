@@ -71,8 +71,8 @@ const Signup: React.FC = () => {
 
   const onSubmit: SubmitHandler<SignupFormData> = async (data) => {
     try {
-      const user = await signup(data).unwrap();
-      navigate("/login");
+      await signup(data).unwrap();
+      navigate("/auth/signin");
     } catch (error) {
       console.log(error);
     }

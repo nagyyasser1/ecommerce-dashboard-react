@@ -40,8 +40,8 @@ function App() {
           <Route index element={<Auth />} />
           <Route path="signin" element={<Login />} />
           <Route path="signup" element={<Signup />} />
-          <Route path="forgot" element={<Forgot />} />
-          <Route path="reset" element={<Reset />} />
+          <Route path="forgotpassword" element={<Forgot />} />
+          <Route path="resetpassword/:token" element={<Reset />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

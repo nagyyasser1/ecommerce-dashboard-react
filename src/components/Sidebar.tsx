@@ -55,8 +55,12 @@ const categories: Category[] = [
     items: [
       { name: "sign up", path: "auth/signup" },
       { name: "sign in", path: "auth/signin" },
-      { name: "forgot password", path: "auth/forgot" },
+      { name: "forgot password", path: "auth/forgotpassword" },
     ],
+  },
+  {
+    title: "Media",
+    items: [],
   },
 ];
 
@@ -71,10 +75,10 @@ const Sidebar = () => {
   return (
     <div className={`${styles.sidebar} ${isMenuOpend && styles.sidebar_left}`}>
       <div className={styles.sidebar_header}>
-        <h3>
+        <p>
           <span>K`</span>AREZMA
-        </h3>
-        <p>admin</p>
+        </p>
+        <p className={styles.sidebar_header_btn}>admin</p>
       </div>
       <div className={styles.sidebar_section}>
         <p>
