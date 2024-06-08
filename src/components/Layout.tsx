@@ -5,7 +5,8 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { selectIsMenuOpend, toggleMenu } from "../features/appSlice";
 import Header from "./Header";
 import { useEffect, useState } from "react";
-import { useRefreshTokenMutation } from "../app/services/auth";
+import { useRefreshTokenMutation } from "../app/services/auth.service";
+import { setCredentials } from "../features/auth/authSlice";
 
 const Layout = () => {
   const [refresh, { isLoading }] = useRefreshTokenMutation();
@@ -21,8 +22,10 @@ const Layout = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await refresh({}).unwrap();
+        const { accessToken } = await refresh({}).unwrap();
         setIsInitialLoading(false);
+        const user = JSON.parse(localStorage.getItem("user") as any);
+        dispatch(setCredentials({ accessToken, user }));
       } catch (error) {
         console.error("Error refreshing token:", error);
         navigate("/auth/signin");

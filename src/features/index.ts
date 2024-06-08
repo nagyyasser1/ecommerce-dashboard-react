@@ -11,3 +11,6 @@ export { default as Orders } from "./orders/Orders";
 export { default as OrderDetails } from "./orders/OrderDetails";
 export { default as Products } from "./products/Products";
 export { default as ProductDetails } from "./products/ProductDetails";
+export { default as Media } from "./media/Media";
+export { default as MediaForm } from "./media/MediaForm";
+export { default as FolderDetails } from "./media/FolderDetails";

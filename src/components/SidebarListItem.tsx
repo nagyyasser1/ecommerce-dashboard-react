@@ -12,8 +12,9 @@ import { Link } from "react-router-dom";
 import { IoMdCart } from "react-icons/io";
 import { useAppDispatch } from "../app/hooks";
 import { toggleMenu } from "../features/appSlice";
+import { GoFileMedia } from "react-icons/go";
 
-const SidebarListItem = ({ title, items }: any) => {
+const SidebarListItem = ({ title, path, items }: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useAppDispatch();
 
@@ -39,18 +40,24 @@ const SidebarListItem = ({ title, items }: any) => {
             <MdOutlineCategory />
           ) : title === "Admins" ? (
             <FaUserSecret />
+          ) : title === "Media" ? (
+            <GoFileMedia />
           ) : (
             <FaUserShield />
           )}
-          <p>{title}</p>
+          <Link to={path} className={styles.sidebar_listItem_link}>
+            <p>{title}</p>
+          </Link>
         </div>
-        <FaArrowLeft
-          className={`${
-            isOpen
-              ? styles.sidebar_list_arrow_down
-              : styles.sidebar_list_arrow_left
-          }`}
-        />
+        {items.length > 0 && (
+          <FaArrowLeft
+            className={`${
+              isOpen
+                ? styles.sidebar_list_arrow_down
+                : styles.sidebar_list_arrow_left
+            }`}
+          />
+        )}
       </div>
       <ul className={`${styles.list_container} ${isOpen && styles.open}`}>
         {items?.map((i: any) => (

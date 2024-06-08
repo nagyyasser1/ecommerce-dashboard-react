@@ -41,6 +41,7 @@
 .formControl input {
   font-size: 1rem;
   padding: 0.5rem;
+  outline: none;
 }
 
 .passwordError {
@@ -51,7 +52,7 @@
   cursor: pointer;
   position: absolute;
   right: 10px; /* Adjust right padding for desired positioning */
-  top: 2.5rem; /* Vertical centering */
+  top: 2.6rem; /* Vertical centering */
   transform: translateY(-50%); /* Counteract vertical offset */
 }
 
@@ -70,7 +71,7 @@
   font-size: 1rem;
   padding: 1rem;
   cursor: pointer;
-  background-color: #ffd333;
+  background-color: var(--primary-color);
   border: none;
 }
 

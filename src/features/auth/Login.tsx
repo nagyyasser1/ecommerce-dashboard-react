@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../app/hooks";
 import { setCredentials } from "./authSlice";
-import { useLoginMutation } from "../../app/services/auth";
+import { useLoginMutation } from "../../app/services/auth.service";
 import styles from "./styles/Login.module.css";
 
 import { MdOutlineVisibilityOff } from "react-icons/md";
@@ -53,6 +53,7 @@ const Login: React.FC = () => {
     try {
       const userData = await login(data).unwrap();
       dispatch(setCredentials(userData));
+      localStorage.setItem("user", JSON.stringify(userData.user));
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -101,7 +102,7 @@ const Login: React.FC = () => {
           </div>
 
           <div className={styles.from_forgot}>
-            <Link to={"/auth/forgot"}>Forgot password?</Link>
+            <Link to={"/auth/forgotpassword"}>Forgot password?</Link>
           </div>
 
           <div className={styles.formAction}>

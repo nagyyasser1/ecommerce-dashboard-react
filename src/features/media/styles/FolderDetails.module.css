@@ -1,0 +1,31 @@
+.folderDetails {
+  width: 97%;
+  margin: auto;
+}
+
+.folderDetails_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.folderDetails_header p {
+  color: var(--primary-font-color);
+  font-size: 1.4rem;
+}
+
+.folderDetails_actions button {
+  color: var(--primary-font-color);
+  /* border: 1px solid var(--primary-color); */
+  border: none;
+  background-color: #f5f7fa;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: 0.2s ease-in-out;
+}
+
+.folderDetails_actions button:hover {
+  color: red;
+}

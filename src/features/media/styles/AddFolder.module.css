@@ -1,0 +1,35 @@
+.addFolder {
+  display: flex;
+  align-items: center;
+}
+
+.addFolder form {
+  display: flex;
+}
+.addFolder input {
+  padding: 0.3rem;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background-color: #f5f7fa;
+  border-bottom: 1px solid var(--primary-font-color);
+  font-size: 0.9rem;
+  color: var(--primary-font-color);
+}
+
+.addFolder button {
+  color: white;
+  font-size: 1rem;
+  color: var(--primary-font-color);
+  cursor: pointer;
+  padding: 0.3rem 1rem;
+  border: none;
+  transition: 0.3s ease-in-out;
+  border-left: 1px solid var(--primary-font-color);
+  border-bottom: 1px solid var(--primary-font-color);
+  background-color: #f5f7fa;
+}
+
+.addFolder button:hover {
+  color: #ffc800;
+}

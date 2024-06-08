@@ -17,7 +17,7 @@
 }
 
 .profileMenu ul li:hover {
-  color: rgb(231, 206, 19);
+  color: var(--primary-color);
 }
 
 .logoutButton {
@@ -31,5 +31,5 @@
 }
 
 .logoutButton:hover {
-  color: rgb(231, 206, 19);
+  color: var(--primary-color);
 }

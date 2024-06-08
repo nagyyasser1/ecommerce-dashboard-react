@@ -1,6 +1,6 @@
 import styles from "./styles/ProfileMenu.module.css";
 import { useAppDispatch } from "../app/hooks";
-import { useLogoutMutation } from "../app/services/auth";
+import { useLogoutMutation } from "../app/services/auth.service";
 import { logOut } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 

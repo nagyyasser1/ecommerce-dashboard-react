@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #ffd333;
+  background-color: var(--primary-color);
   padding: 0.7rem 1rem;
   color: #3d464d;
 }
@@ -27,6 +27,10 @@
 .sidebar_header p span {
   font-size: 1.5rem;
   color: rgb(255, 0, 0);
+}
+
+.sidebar_header_brand {
+  font-size: 1.5rem;
 }
 
 .sidebar_header_btn {
@@ -129,7 +133,7 @@
 }
 
 .list_container li a:hover {
-  color: #ffd333;
+  color: var(--primary-color);
 }
 
 .sidebar_list_arrow_down {
@@ -140,6 +144,11 @@
 .sidebar_list_arrow_left {
   transform: rotate(0deg);
   transition: 0.2s;
+}
+
+.sidebar_listItem_link {
+  color: white;
+  text-decoration: none;
 }
 
 @media (max-width: 740px) {

@@ -32,7 +32,7 @@ const baseQueryWithReauth = async (
       api,
       extraOptions
     );
-    console.log(refreshResult);
+    // console.log(refreshResult);
     if (refreshResult?.data) {
       const user = api.getState().auth.user;
       // store the new token
@@ -50,4 +50,5 @@ const baseQueryWithReauth = async (
 export const apiSlice = createApi({
   baseQuery: baseQueryWithReauth,
   endpoints: (_builder) => ({}),
+  tagTypes: ["Folders", "Folder", "Images"],
 });

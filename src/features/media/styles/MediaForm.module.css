@@ -1,0 +1,25 @@
+.mediaForm {
+  display: flex;
+  justify-content: center;
+}
+
+.mediaForm form {
+  border: 1px solid gainsboro;
+  border-radius: 2px;
+  padding: 2rem;
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.mediaForm form input {
+  padding: 0.5rem;
+}
+
+.mediaForm form button {
+  background-color: var(--primary-color);
+  cursor: pointer;
+  border: none;
+  padding: 0.4rem;
+  border-radius: 2px;
+}

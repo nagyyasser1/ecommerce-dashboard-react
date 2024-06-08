@@ -12,6 +12,16 @@
   padding-left: 1rem;
 }
 
+.header_menu_icon_container {
+  padding: 0.3rem;
+  border-radius: 3px;
+  transition: 0.4s ease-in-out;
+}
+
+.header_menu_icon_container:hover {
+  background-color: #dfe1e5;
+}
+
 .header_menu {
   font-size: 1.6rem;
   cursor: pointer;
@@ -33,10 +43,10 @@
 
 .header_profile_icon {
   font-size: 2rem;
-  color: #ffd333;
+  color: var(--primary-color);
 }
 
 .header_profile_info span {
   font-size: 0.7rem;
-  color: gray;
+  color: var(--primary-font-color);
 }

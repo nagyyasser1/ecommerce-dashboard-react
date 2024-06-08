@@ -22,7 +22,7 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      <div>
+      <div className={styles.header_menu_icon_container}>
         <CiMenuFries
           className={styles.header_menu}
           onClick={handleOverLayClicked}

@@ -11,12 +11,19 @@ interface Item {
 
 interface Category {
   title: string;
+  path: string;
   items: Item[];
 }
 
 const categories: Category[] = [
   {
+    title: "Media",
+    path: "media",
+    items: [],
+  },
+  {
     title: "Products",
+    path: "products",
     items: [
       { name: "product list", path: "products" },
       { name: "product details", path: "products/5" },
@@ -24,6 +31,7 @@ const categories: Category[] = [
   },
   {
     title: "Categories",
+    path: "categories",
     items: [
       { name: "product list", path: "categories" },
       { name: "product details", path: "category/5" },
@@ -31,6 +39,7 @@ const categories: Category[] = [
   },
   {
     title: "Orders",
+    path: "orders",
     items: [
       { name: "order list", path: "orders" },
       { name: "order details", path: "orders/5" },
@@ -38,6 +47,7 @@ const categories: Category[] = [
   },
   {
     title: "Customers",
+    path: "customers",
     items: [
       { name: "customer list", path: "customers" },
       { name: "customer details", path: "customers/5" },
@@ -45,6 +55,7 @@ const categories: Category[] = [
   },
   {
     title: "Admins",
+    path: "admins",
     items: [
       { name: "admin list", path: "admins" },
       { name: "admin details", path: "admins/4" },
@@ -52,15 +63,12 @@ const categories: Category[] = [
   },
   {
     title: "Authentication",
+    path: "auth",
     items: [
       { name: "sign up", path: "auth/signup" },
       { name: "sign in", path: "auth/signin" },
       { name: "forgot password", path: "auth/forgotpassword" },
     ],
-  },
-  {
-    title: "Media",
-    items: [],
   },
 ];
 
@@ -75,7 +83,7 @@ const Sidebar = () => {
   return (
     <div className={`${styles.sidebar} ${isMenuOpend && styles.sidebar_left}`}>
       <div className={styles.sidebar_header}>
-        <p>
+        <p className={styles.sidebar_header_brand}>
           <span>K`</span>AREZMA
         </p>
         <p className={styles.sidebar_header_btn}>admin</p>
@@ -91,6 +99,7 @@ const Sidebar = () => {
         {categories.map((cat) => (
           <SidebarListItem
             title={cat.title}
+            path={cat.path}
             items={cat.items}
             key={cat.title}
           />

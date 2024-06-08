@@ -14,7 +14,7 @@
 .container h1 {
   font-size: 3rem;
   margin-bottom: 20px;
-  color: #ffd333;
+  color: var(--primary-color);
 }
 
 .container p {
@@ -30,7 +30,7 @@
 }
 
 .button {
-  background-color: #ffd333;
+  background-color: var(--primary-color);
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -41,7 +41,7 @@
 }
 
 .button:hover {
-  background-color: #e7c650;
+  background-color: var(--primary-color);
 }
 
 .image {

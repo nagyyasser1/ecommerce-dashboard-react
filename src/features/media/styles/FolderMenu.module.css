@@ -1,0 +1,33 @@
+.folderMenu {
+  position: absolute;
+  top: 40px;
+  right: 15px;
+  background: #ddd;
+  border: 1px solid #ddd;
+  padding: 10px;
+  z-index: 1;
+
+  text-align: left;
+}
+
+.folderMenu ul {
+  list-style: none;
+}
+
+.folderMenu ul li:hover {
+  color: var(--primary-color);
+}
+
+.deleteButton {
+  color: gray;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #ddd;
+}
+
+.deleteButton:hover {
+  color: var(--primary-color);
+}

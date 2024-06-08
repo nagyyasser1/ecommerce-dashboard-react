@@ -1,0 +1,16 @@
+.media {
+  width: 97%;
+  margin: auto;
+}
+
+.media_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.media_header p {
+  font-size: 1.3rem;
+  color: var(--primary-font-color);
+}

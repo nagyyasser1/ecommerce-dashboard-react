@@ -7,8 +7,10 @@ import {
   Auth,
   CustomerDetails,
   Customers,
+  FolderDetails,
   Forgot,
   Login,
+  Media,
   OrderDetails,
   Orders,
   ProductDetails,
@@ -23,7 +25,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<OverView />} />
-          <Route path="products" element={<Products />}>
+          <Route path="/media" element={<Media />} />
+          <Route path="/media/:folderName" element={<FolderDetails />} />
+          <Route path="/products" element={<Products />}>
             <Route path=":productId" element={<ProductDetails />} />
           </Route>
           <Route path="/orders" element={<Orders />}>
