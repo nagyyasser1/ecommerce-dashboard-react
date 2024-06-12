@@ -1,5 +1,5 @@
 .skeleton {
-  background-color: #d1d0d0;
+  background-color: gainsboro;
   animation: shimmer 1.5s infinite linear;
   border-radius: 4px;
 }

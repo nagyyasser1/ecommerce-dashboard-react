@@ -12,9 +12,10 @@
   border-left: none;
   border-right: none;
   background-color: #f5f7fa;
-  border-bottom: 1px solid var(--primary-font-color);
-  font-size: 0.9rem;
+  border-bottom: 1px dashed var(--primary-font-color);
+  font-size: 1rem;
   color: var(--primary-font-color);
+  max-width: 8rem;
 }
 
 .addFolder button {
@@ -25,8 +26,8 @@
   padding: 0.3rem 1rem;
   border: none;
   transition: 0.3s ease-in-out;
-  border-left: 1px solid var(--primary-font-color);
-  border-bottom: 1px solid var(--primary-font-color);
+  /* border-left: 1px dashed var(--primary-font-color); */
+  border-bottom: 1px dashed var(--primary-font-color);
   background-color: #f5f7fa;
 }
 

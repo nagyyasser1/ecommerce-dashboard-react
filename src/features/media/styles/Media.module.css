@@ -1,5 +1,5 @@
 .media {
-  width: 97%;
+  width: 100%;
   margin: auto;
 }
 
@@ -7,7 +7,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 0;
+  padding: 1rem;
 }
 
 .media_header p {

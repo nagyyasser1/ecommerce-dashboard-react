@@ -1,7 +1,8 @@
 .layout {
   display: flex;
   align-items: stretch;
-  min-height: 100vh;
+  height: 100vh;
+  position: relative;
 }
 
 .aside {

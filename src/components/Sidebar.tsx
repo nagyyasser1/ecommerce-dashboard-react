@@ -22,19 +22,19 @@ const categories: Category[] = [
     items: [],
   },
   {
+    title: "Categories",
+    path: "categories",
+    items: [
+      { name: "all", path: "categories" },
+      { name: "new", path: "categories/new" },
+    ],
+  },
+  {
     title: "Products",
     path: "products",
     items: [
       { name: "product list", path: "products" },
       { name: "product details", path: "products/5" },
-    ],
-  },
-  {
-    title: "Categories",
-    path: "categories",
-    items: [
-      { name: "product list", path: "categories" },
-      { name: "product details", path: "category/5" },
     ],
   },
   {
@@ -63,12 +63,8 @@ const categories: Category[] = [
   },
   {
     title: "Authentication",
-    path: "auth",
-    items: [
-      { name: "sign up", path: "auth/signup" },
-      { name: "sign in", path: "auth/signin" },
-      { name: "forgot password", path: "auth/forgotpassword" },
-    ],
+    path: "auth/signin",
+    items: [],
   },
 ];
 
@@ -91,7 +87,7 @@ const Sidebar = () => {
       <div className={styles.sidebar_section}>
         <p>
           <Link to="/" onClick={handleOverLayClicked}>
-            Application
+            Dashboard
           </Link>
         </p>
       </div>

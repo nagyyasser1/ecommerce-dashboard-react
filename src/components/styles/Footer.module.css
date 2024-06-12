@@ -1,0 +1,21 @@
+.footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  color: var(--primary-font-color);
+  background-color: white;
+}
+
+.information {
+}
+
+.links {
+  list-style: none;
+  display: flex;
+  gap: 0.5rem;
+}

@@ -67,6 +67,22 @@ export const mediaApiSlice = apiSlice.injectEndpoints({
         { type: "Images", id: folderName },
       ],
     }),
+    getImagesFromAllFolders: builder.query({
+      query: (random) => ({
+        url: "cloudinary/images",
+        params: { random },
+      }),
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }: any) => ({
+                type: "Images" as const,
+                id,
+              })),
+              { type: "Images", id: "ALL" },
+            ]
+          : [{ type: "Images", id: "ALL" }],
+    }),
   }),
 });
 
@@ -77,4 +93,5 @@ export const {
   useRemoveFolderMutation,
   useUploadFilesMutation,
   useDeleteFileMutation,
+  useGetImagesFromAllFoldersQuery,
 } = mediaApiSlice;

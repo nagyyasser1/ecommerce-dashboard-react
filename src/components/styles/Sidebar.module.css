@@ -21,7 +21,8 @@
 
 .sidebar_header p {
   cursor: pointer;
-  color: #5a646d;
+  color: var(--primary-font-color);
+  font-weight: bold;
 }
 
 .sidebar_header p span {
@@ -99,6 +100,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0.2rem;
+  transition: 0.3s ease-in-out;
+}
+
+.sidebar_listItem_header:hover {
+  background-color: rgb(51, 58, 71);
 }
 
 .sidebar_listItem_header div {
@@ -108,11 +115,16 @@
 }
 
 .list_container {
-  display: none;
+  display: block;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
 }
 
 .list_container.open {
-  display: block;
+  max-height: 500px; /* or some appropriate maximum height */
+  opacity: 1;
 }
 
 .list_container ul {
@@ -139,11 +151,13 @@
 .sidebar_list_arrow_down {
   transform: rotate(-90deg);
   transition: 0.2s;
+  color: white;
 }
 
 .sidebar_list_arrow_left {
   transform: rotate(0deg);
   transition: 0.2s;
+  color: rgb(180, 178, 178);
 }
 
 .sidebar_listItem_link {

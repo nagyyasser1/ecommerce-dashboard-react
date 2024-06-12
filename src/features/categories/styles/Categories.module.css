@@ -1,0 +1,29 @@
+.categories {
+  width: 100%;
+  padding: 0px 1rem;
+  margin: auto;
+  height: 90vh;
+  overflow: scroll;
+}
+
+.categories_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.categories_header p {
+  font-size: 1.3rem;
+  color: var(--primary-font-color);
+}
+
+.categories_header_actions button {
+  color: var(--primary-font-color);
+  transition: 0.3s ease-in-out;
+  border: none;
+  font-size: 1rem;
+  background-color: var(--primary-color);
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+}

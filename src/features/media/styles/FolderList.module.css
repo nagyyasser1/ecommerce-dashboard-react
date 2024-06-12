@@ -7,16 +7,16 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  padding: 0rem 1rem;
 }
 
 .folderItem {
   display: flex;
   justify-content: space-between;
   gap: 0.4rem;
-  border-radius: 3px;
   padding: 0.5rem 0.2rem;
   min-width: 7rem;
-  border: 1px solid #72777b;
+  border: 1px solid gainsboro;
   color: var(--primary-font-color);
   cursor: pointer;
   transition: 0.3s ease-in-out;

@@ -1,10 +1,14 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Layout, NotFound, OverView } from "./components";
 import {
+  AddNewCatForm,
   AdminDetails,
   Admins,
   Auth,
+  Categories,
+  CategoriesList,
+  CategoryDetails,
   CustomerDetails,
   Customers,
   FolderDetails,
@@ -19,36 +23,71 @@ import {
   Signup,
 } from "./features";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      { index: true, element: <OverView /> },
+      { path: "media", element: <Media /> },
+      { path: "media/:folderName", element: <FolderDetails /> },
+      {
+        path: "categories",
+        element: <Categories />,
+        children: [
+          {
+            index: true,
+            element: <CategoriesList />,
+          },
+          {
+            path: "new",
+            element: <AddNewCatForm />,
+          },
+          {
+            path: ":catId",
+            element: <CategoryDetails />,
+          },
+        ],
+      },
+      {
+        path: "products",
+        element: <Products />,
+        children: [{ path: ":productId", element: <ProductDetails /> }],
+      },
+      {
+        path: "orders",
+        element: <Orders />,
+        children: [{ path: ":orderId", element: <OrderDetails /> }],
+      },
+      {
+        path: "customers",
+        element: <Customers />,
+        children: [{ path: ":customerId", element: <CustomerDetails /> }],
+      },
+      {
+        path: "admins",
+        element: <Admins />,
+        children: [{ path: ":adminId", element: <AdminDetails /> }],
+      },
+    ],
+  },
+  {
+    path: "auth",
+    children: [
+      { index: true, element: <Auth /> },
+      { path: "signin", element: <Login /> },
+      { path: "signup", element: <Signup /> },
+      { path: "forgotpassword", element: <Forgot /> },
+      { path: "resetpassword/:token", element: <Reset /> },
+    ],
+  },
+  { path: "*", element: <NotFound /> },
+]);
+
 function App() {
   return (
     <div className="app">
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<OverView />} />
-          <Route path="/media" element={<Media />} />
-          <Route path="/media/:folderName" element={<FolderDetails />} />
-          <Route path="/products" element={<Products />}>
-            <Route path=":productId" element={<ProductDetails />} />
-          </Route>
-          <Route path="/orders" element={<Orders />}>
-            <Route path=":orderId" element={<OrderDetails />} />
-          </Route>
-          <Route path="/customers" element={<Customers />}>
-            <Route path=":customerId" element={<CustomerDetails />} />
-          </Route>
-          <Route path="/admins" element={<Admins />}>
-            <Route path=":adminId" element={<AdminDetails />} />
-          </Route>
-        </Route>
-        <Route path="/auth">
-          <Route index element={<Auth />} />
-          <Route path="signin" element={<Login />} />
-          <Route path="signup" element={<Signup />} />
-          <Route path="forgotpassword" element={<Forgot />} />
-          <Route path="resetpassword/:token" element={<Reset />} />
-        </Route>
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <RouterProvider router={router} />
     </div>
   );
 }

@@ -49,7 +49,7 @@ const SidebarListItem = ({ title, path, items }: any) => {
             <p>{title}</p>
           </Link>
         </div>
-        {items.length > 0 && (
+        {items.length >= 0 && (
           <FaArrowLeft
             className={`${
               isOpen

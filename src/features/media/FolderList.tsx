@@ -3,6 +3,7 @@ import { useGetFoldersQuery } from "../../app/services/media.service";
 import styles from "./styles/FolderList.module.css";
 import { Skeleton } from "../../components";
 import { Link } from "react-router-dom";
+import RandomImages from "./RandomImages";
 
 const FolderList = () => {
   const [folders, setFolders] = useState([]);
@@ -40,6 +41,7 @@ const FolderList = () => {
           ))}
         </ul>
       )}
+      <RandomImages />
     </div>
   );
 };

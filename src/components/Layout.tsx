@@ -7,6 +7,7 @@ import Header from "./Header";
 import { useEffect, useState } from "react";
 import { useRefreshTokenMutation } from "../app/services/auth.service";
 import { setCredentials } from "../features/auth/authSlice";
+import Footer from "./Footer";
 
 const Layout = () => {
   const [refresh, { isLoading }] = useRefreshTokenMutation();
@@ -66,6 +67,7 @@ const Layout = () => {
       >
         <Header />
         <Outlet />
+        <Footer />
       </main>
     </div>
   );

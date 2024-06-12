@@ -25,7 +25,7 @@ const FolderDetails = () => {
     <div className={styles.folderDetails}>
       <div className={styles.folderDetails_header}>
         <p>
-          Name <span>{`>>`}</span> {folderName}
+          Name <span>{` >`}</span> {folderName}
         </p>
         <div className={styles.folderDetails_actions}>
           <button onClick={handleDelete}>
