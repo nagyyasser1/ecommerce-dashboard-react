@@ -91,7 +91,7 @@
 }
 
 .sidebar_list li {
-  padding: 0.5rem;
+  padding: 0.15rem 0.5rem;
   cursor: pointer;
   color: white;
 }

@@ -1,0 +1,90 @@
+.folderList {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 11;
+  background-color: rgba(223, 224, 225, 0.7);
+}
+
+.folderList_loading {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 11;
+  background-color: rgba(153, 158, 163, 0.7);
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding-top: 3rem;
+}
+
+.folderList_header {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.folderList_header_icon {
+  font-size: 2rem;
+  cursor: pointer;
+  color: white;
+}
+
+.folderList_content {
+  width: 100%;
+  background-color: #72777b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.folderList ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 2.8rem 1rem;
+}
+
+.folderItem {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.4rem;
+  padding: 0.5rem 0.2rem;
+  min-width: 7rem;
+  border: 1px solid gainsboro;
+  background-color: var(--primary-color);
+  color: var(--primary-font-color);
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.folderItem:hover {
+  background-color: #72777b;
+  color: white;
+}
+
+.folderItem a {
+  color: var(--primary-font-color);
+  text-decoration: none;
+  transition: 0.2s ease-in-out;
+}
+
+.folderItem:hover a {
+  color: white;
+}
+
+.imagesContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+  gap: 5px;
+  padding: 5px;
+  margin-top: 10px;
+  max-height: 60vh;
+  overflow-y: scroll;
+}

@@ -1,0 +1,28 @@
+.products {
+  padding: 1rem;
+}
+
+.products_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.products_header p {
+  font-size: 1.5rem;
+  color: var(--primary-font-color);
+}
+
+.products_header button {
+  background-color: var(--primary-color);
+  cursor: pointer;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 2px;
+  font-size: 1rem;
+  transition: 0.5s ease-in-out;
+}
+
+.products_header button:hover {
+  background-color: #dab01c;
+}

@@ -28,6 +28,7 @@
 .header_menu {
   font-size: 1.6rem;
   cursor: pointer;
+  transform: rotate(180deg);
 }
 
 .header_profile {

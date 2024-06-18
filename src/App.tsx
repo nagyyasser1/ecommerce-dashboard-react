@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Layout, NotFound, OverView } from "./components";
 import {
   AddNewCatForm,
+  AddProduct,
   AdminDetails,
   Admins,
   Auth,
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
         path: "products",
         element: <Products />,
         children: [{ path: ":productId", element: <ProductDetails /> }],
+      },
+      {
+        path: "products/new",
+        element: <AddProduct />,
       },
       {
         path: "orders",

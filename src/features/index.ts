@@ -11,6 +11,7 @@ export { default as Orders } from "./orders/Orders";
 export { default as OrderDetails } from "./orders/OrderDetails";
 export { default as Products } from "./products/Products";
 export { default as ProductDetails } from "./products/ProductDetails";
+export { default as AddProduct } from "./products/AddProduct";
 export { default as Categories } from "./categories/Categories";
 export { default as CategoriesList } from "./categories/CategoriesList";
 export { default as AddNewCatForm } from "./categories/AddNewCatForm";
