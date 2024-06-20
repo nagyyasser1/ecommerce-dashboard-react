@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { selectIsMenuOpend, toggleMenu } from "../features/appSlice";
 import Header from "./Header";
 import { useEffect, useState } from "react";
-import { useRefreshTokenMutation } from "../app/services/auth.service";
+import { useRefreshTokenMutation } from "../app/services/authService";
 import { setCredentials } from "../features/auth/authSlice";
 import Footer from "./Footer";
 

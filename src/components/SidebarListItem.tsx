@@ -1,18 +1,17 @@
-import { AiOutlineProduct } from "react-icons/ai";
+import { AiFillProduct } from "react-icons/ai";
 import {
   FaArrowLeft,
   FaUserShield,
   FaUsers,
   FaUserSecret,
 } from "react-icons/fa";
-import { MdOutlineCategory } from "react-icons/md";
+import { MdPermMedia, MdCategory } from "react-icons/md";
 import styles from "./styles/Sidebar.module.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { IoMdCart } from "react-icons/io";
 import { useAppDispatch } from "../app/hooks";
 import { toggleMenu } from "../features/appSlice";
-import { GoFileMedia } from "react-icons/go";
 
 const SidebarListItem = ({ title, path, items }: any) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,17 +30,17 @@ const SidebarListItem = ({ title, path, items }: any) => {
       <div className={styles.sidebar_listItem_header} onClick={handleClicked}>
         <div>
           {title === "Products" ? (
-            <AiOutlineProduct />
+            <AiFillProduct />
           ) : title === "Orders" ? (
             <IoMdCart />
           ) : title === "Customers" ? (
             <FaUsers />
           ) : title === "Categories" ? (
-            <MdOutlineCategory />
+            <MdCategory />
           ) : title === "Admins" ? (
             <FaUserSecret />
           ) : title === "Media" ? (
-            <GoFileMedia />
+            <MdPermMedia />
           ) : (
             <FaUserShield />
           )}

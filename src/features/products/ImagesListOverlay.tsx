@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useGetAllInFolderQuery } from "../../app/services/media.service";
+import { useGetAllInFolderQuery } from "../../app/services/mediaService";
 import { Skeleton } from "../../components";
 import styles from "./styles/ImagesListOverlay.module.css";
 import { useFormContext } from "react-hook-form";

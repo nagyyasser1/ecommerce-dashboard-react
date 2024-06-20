@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useResetPasswordMutation } from "../../app/services/auth.service";
+import { useResetPasswordMutation } from "../../app/services/authService";
 import styles from "./styles/Reset.module.css";
 
 import { useForm, SubmitHandler } from "react-hook-form";

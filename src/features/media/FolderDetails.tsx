@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import styles from "./styles/FolderDetails.module.css";
 import UploadAssets from "./UploadAssets";
 import ImagesList from "./ImagesList";
-import { useRemoveFolderMutation } from "../../app/services/media.service";
+import { useRemoveFolderMutation } from "../../app/services/mediaService";
 
 const FolderDetails = () => {
   const { folderName } = useParams();

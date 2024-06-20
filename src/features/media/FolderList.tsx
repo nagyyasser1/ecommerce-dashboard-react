@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useGetFoldersQuery } from "../../app/services/media.service";
+import { useGetFoldersQuery } from "../../app/services/mediaService";
 import styles from "./styles/FolderList.module.css";
 import { Skeleton } from "../../components";
 import { Link } from "react-router-dom";

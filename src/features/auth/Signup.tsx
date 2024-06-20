@@ -5,7 +5,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import styles from "./styles/Signup.module.css";
-import { useSignupMutation } from "../../app/services/auth.service";
+import { useSignupMutation } from "../../app/services/authService";
 
 const schema = yup
   .object({

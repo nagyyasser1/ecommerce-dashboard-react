@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useDeleteFileMutation } from "../../app/services/media.service";
+import { useDeleteFileMutation } from "../../app/services/mediaService";
 import styles from "./styles/ImagesList.module.css";
 
 interface ImageOverlayProp {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useForgotPasswordMutation } from "../../app/services/auth.service";
+import { useForgotPasswordMutation } from "../../app/services/authService";
 import styles from "./styles/Forgot.module.css";
 
 import { useForm, SubmitHandler } from "react-hook-form";

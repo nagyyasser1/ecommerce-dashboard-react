@@ -1,8 +1,8 @@
 import styles from "./styles/Sidebar.module.css";
 import SidebarListItem from "./SidebarListItem";
 import { Link } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { selectIsMenuOpend, toggleMenu } from "../features/appSlice";
+import { useAppSelector } from "../app/hooks";
+import { selectIsMenuOpend } from "../features/appSlice";
 
 interface Item {
   name: string;
@@ -70,11 +70,6 @@ const categories: Category[] = [
 
 const Sidebar = () => {
   const isMenuOpend = useAppSelector(selectIsMenuOpend);
-  const dispatch = useAppDispatch();
-
-  const handleOverLayClicked = () => {
-    dispatch(toggleMenu());
-  };
 
   return (
     <div className={`${styles.sidebar} ${isMenuOpend && styles.sidebar_left}`}>
@@ -86,9 +81,7 @@ const Sidebar = () => {
       </div>
       <div className={styles.sidebar_section}>
         <p>
-          <Link to="/" onClick={handleOverLayClicked}>
-            Dashboard
-          </Link>
+          <Link to="/">Dashboard</Link>
         </p>
       </div>
       <ul className={styles.sidebar_list}>

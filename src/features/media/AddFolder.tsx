@@ -1,4 +1,4 @@
-import { useCreateFolderMutation } from "../../app/services/media.service";
+import { useCreateFolderMutation } from "../../app/services/mediaService";
 import styles from "./styles/AddFolder.module.css";
 
 import { useForm, SubmitHandler } from "react-hook-form";

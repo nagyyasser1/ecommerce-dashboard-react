@@ -1,5 +1,5 @@
 import React from "react";
-import { useGetImagesFromAllFoldersQuery } from "../../app/services/media.service";
+import { useGetImagesFromAllFoldersQuery } from "../../app/services/mediaService";
 import ImageOverlay from "./ImageOverlay";
 import { Skeleton } from "../../components";
 import styles from "./styles/RandomImages.module.css";

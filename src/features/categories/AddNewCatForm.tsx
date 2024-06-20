@@ -5,7 +5,7 @@ const ReactQuill = lazy(() => import("react-quill"));
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useCreateCategoryMutation } from "../../app/services/category.service";
+import { useCreateCategoryMutation } from "../../app/services/categoryService";
 import { useNavigate } from "react-router-dom";
 
 const schema = yup

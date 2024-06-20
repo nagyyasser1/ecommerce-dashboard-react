@@ -12,6 +12,7 @@ import * as yup from "yup";
 import FolderListOverlay from "./FolderListOverlay";
 import { selectIsAssestsOpend, toggleAssestOverlay } from "../appSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useCreateProductMutation } from "../../app/services/productsService";
 
 const schema = yup
   .object({
@@ -19,15 +20,11 @@ const schema = yup
     slug: yup.string().required("Slug is required"),
     description: yup.string().required("Description is required"),
     short_description: yup.string().required("Short Description is required"),
-    price: yup
-      .object({
-        new: yup.number().required("New price is required"),
-        old: yup.number().optional(),
-      })
-      .required(),
+    price: yup.number().required("Price is required"),
+    old_price: yup.number().required("old_price is required"),
     page_title: yup.string().required("Page Title is required"),
     meta_description: yup.string().required("Meta Description is required"),
-    category: yup.string().required("Category is required"),
+    category: yup.number().required("Category is required"),
     tags: yup
       .array()
       .of(yup.string().required("Each tag must be a string"))
@@ -55,13 +52,11 @@ interface CreateProductData {
   slug: string;
   description: string;
   short_description: string;
-  price: {
-    new: number;
-    old?: number;
-  };
+  price: number;
+  old_price: number;
   page_title: string;
   meta_description: string;
-  category: string;
+  category: number;
   tags?: string[];
   images?: string[];
   visible: boolean;
@@ -78,13 +73,11 @@ const initialValues: CreateProductData = {
   slug: "",
   description: "",
   short_description: "",
-  price: {
-    new: 0,
-    old: undefined,
-  },
+  price: 0,
+  old_price: 0,
   page_title: "",
   meta_description: "",
-  category: "",
+  category: 0,
   tags: [""],
   images: [""],
   visible: true,
@@ -125,9 +118,19 @@ const AddProduct = () => {
     methods.setValue("tags", tags);
   };
 
+  const [createProduct, { isLoading }] = useCreateProductMutation();
+
   const onSubmit: SubmitHandler<CreateProductData> = async (data) => {
     try {
-      console.log(data);
+      const payload = {
+        ...data,
+        price: parseFloat(data.price.toString()),
+        old_price: data.old_price
+          ? parseFloat(data.old_price.toString())
+          : undefined,
+        category: parseInt(data.category.toString()),
+      };
+      await createProduct(payload).unwrap();
     } catch (err) {
       console.log(err);
     }
@@ -143,7 +146,9 @@ const AddProduct = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.addNewCatForm_header}>
             <p>New Product</p>
-            <button type="submit">Publish</button>
+            <button type="submit">
+              {isLoading ? "Publishing" : "Publish"}
+            </button>
           </div>
           <div className={styles.form}>
             <div className={styles.basicInfo_section}>
@@ -193,13 +198,13 @@ const AddProduct = () => {
               <p className={styles.formSection_header}>$ Price</p>
               <div className={styles.formControl}>
                 <label htmlFor="price">Price</label>
-                <input {...register("price.new")} type="number" id="price" />
-                {errors.price?.new && <p>{errors.price.new.message}</p>}
+                <input {...register("price")} type="number" id="price" />
+                {errors.price && <p>{errors.price.message}</p>}
               </div>
               <div className={styles.formControl}>
                 <label htmlFor="oldprice">Old price</label>
-                <input {...register("price.old")} type="number" id="oldprice" />
-                {errors.price?.old && <p>{errors.price.old.message}</p>}
+                <input {...register("old_price")} type="number" id="oldprice" />
+                {errors.old_price && <p>{errors.old_price.message}</p>}
               </div>
             </div>
             <div className={styles.seo_section}>
@@ -230,7 +235,7 @@ const AddProduct = () => {
             <div className={styles.category_section}>
               <p className={styles.formSection_header}>Category</p>
               <div className={styles.formControl}>
-                <input {...register("category")} type="text" id="category" />
+                <input {...register("category")} type="number" id="category" />
                 {errors.category && <p>{errors.category.message}</p>}
               </div>
             </div>

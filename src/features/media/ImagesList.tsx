@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useGetAllInFolderQuery } from "../../app/services/media.service";
+import { useGetAllInFolderQuery } from "../../app/services/mediaService";
 import styles from "./styles/ImagesList.module.css";
 import ImageOverlay from "./ImageOverlay";
 import { Skeleton } from "../../components";

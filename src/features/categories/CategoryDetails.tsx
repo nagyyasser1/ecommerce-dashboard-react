@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import {
   useGetCategoryByIdQuery,
   useUpdateCategoryMutation,
-} from "../../app/services/category.service";
+} from "../../app/services/categoryService";
 import styles from "./styles/AddNewCatForm.module.css";
 import { Suspense, useRef, useEffect } from "react";
 import ReactQuill from "react-quill";

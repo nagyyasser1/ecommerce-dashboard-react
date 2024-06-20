@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { useParams } from "react-router-dom";
-import { useUploadFilesMutation } from "../../app/services/media.service";
+import { useUploadFilesMutation } from "../../app/services/mediaService";
 import styles from "./styles/UploadAssets.module.css";
 
 const UploadAssets: React.FC = () => {

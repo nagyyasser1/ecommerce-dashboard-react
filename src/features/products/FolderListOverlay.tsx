@@ -1,6 +1,6 @@
 // FolderListOverlay.tsx
 import { useEffect, useState } from "react";
-import { useGetFoldersQuery } from "../../app/services/media.service";
+import { useGetFoldersQuery } from "../../app/services/mediaService";
 import { Skeleton } from "../../components";
 import styles from "./styles/FolderListOverlay.module.css";
 import { IoMdClose } from "react-icons/io";

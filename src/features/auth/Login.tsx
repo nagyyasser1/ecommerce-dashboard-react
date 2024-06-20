@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../app/hooks";
 import { setCredentials } from "./authSlice";
-import { useLoginMutation } from "../../app/services/auth.service";
+import { useLoginMutation } from "../../app/services/authService";
 import styles from "./styles/Login.module.css";
 
 import { MdOutlineVisibilityOff } from "react-icons/md";
