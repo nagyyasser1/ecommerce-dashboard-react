@@ -13,7 +13,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
     updateProduct: builder.mutation({
       query: ({ id, ...updatedProduct }) => ({
         url: `/products/${id}`,
-        method: "PUT",
+        method: "PATCH",
         body: updatedProduct,
       }),
       invalidatesTags: (result, error, { id }) => [{ type: "Products", id }],
@@ -25,7 +25,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: (result, error, id) => [{ type: "Products", id }],
     }),
-    findOneById: builder.query({
+    findProductById: builder.query({
       query: (id) => `/products/${id}`,
       providesTags: (result, error, id) => [{ type: "Products", id }],
     }),
@@ -47,6 +47,6 @@ export const {
   useCreateProductMutation,
   useUpdateProductMutation,
   useDeleteProductMutation,
-  useFindOneByIdQuery,
+  useFindProductByIdQuery,
   useFindAllByPageQuery,
 } = productsApiSlice;

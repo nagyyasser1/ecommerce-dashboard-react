@@ -64,7 +64,20 @@ const categories: Category[] = [
   {
     title: "Authentication",
     path: "auth/signin",
-    items: [],
+    items: [
+      {
+        name: "signin",
+        path: "auth/signin",
+      },
+      {
+        name: "signup",
+        path: "auth/signup",
+      },
+      {
+        name: "forgot password",
+        path: "auth/forgot-password",
+      },
+    ],
   },
 ];
 

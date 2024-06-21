@@ -1,20 +1,8 @@
-import React, { useEffect, useState } from "react";
 import { useGetAllInFolderQuery } from "../../app/services/mediaService";
 import { Skeleton } from "../../components";
 import styles from "./styles/ImagesListOverlay.module.css";
-import { useFormContext } from "react-hook-form";
 
-interface Image {
-  url: string;
-}
-
-interface ImagesListOverlayProps {
-  folderName: string;
-}
-
-const ImagesListOverlay: React.FC<ImagesListOverlayProps> = ({
-  folderName,
-}) => {
+const ImagesListOverlay = ({ folderName, setValue, getValues }: any) => {
   const {
     data: images,
     error,
@@ -22,25 +10,10 @@ const ImagesListOverlay: React.FC<ImagesListOverlayProps> = ({
     isFetching,
   } = useGetAllInFolderQuery({ folderName });
 
-  const { register, setValue } = useFormContext();
-
-  const [selectedImages, setSelectedImages] = useState<string[]>([]);
-
-  const toggleImageSelection = (imageUrl: string) => {
-    setSelectedImages((prevSelectedImages) =>
-      prevSelectedImages.includes(imageUrl)
-        ? prevSelectedImages.filter((url) => url !== imageUrl)
-        : [...prevSelectedImages, imageUrl]
-    );
+  const addImage = (newImage: string) => {
+    const currentImages = getValues("images");
+    setValue("images", [...currentImages, newImage]);
   };
-
-  useEffect(() => {
-    setValue("images", selectedImages);
-  }, [selectedImages, setValue]);
-
-  useEffect(() => {
-    register("images");
-  }, [register]);
 
   if (!folderName) {
     return null;
@@ -62,22 +35,14 @@ const ImagesListOverlay: React.FC<ImagesListOverlayProps> = ({
 
   return (
     <div className={styles.imagesContainer}>
-      {images?.map((image: Image, index: number) => (
-        <div
-          key={index}
-          className={`${styles.imageWrapper} ${
-            selectedImages.includes(image.url) ? styles.selected : ""
-          }`}
-          onClick={() => toggleImageSelection(image.url)}
-        >
+      {images.map((image: { url: string }, index: number) => (
+        <div key={index}>
           <img
-            src={image.url}
+            src={image?.url}
             alt={`Image ${index}`}
-            className={styles.image}
+            width={100}
+            onClick={() => addImage(image?.url)}
           />
-          {selectedImages.includes(image.url) && (
-            <div className={styles.checkmark}>✔</div>
-          )}
         </div>
       ))}
     </div>

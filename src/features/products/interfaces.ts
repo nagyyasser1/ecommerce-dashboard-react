@@ -1,4 +1,5 @@
 export interface Product {
+  id: number;
   name: string;
   slug: string;
   description: string;
@@ -23,4 +24,24 @@ export interface Variant {
 export interface Category {
   name: string;
   id: number;
+}
+
+export interface CreateProductData {
+  name: string;
+  slug: string;
+  description: string;
+  short_description: string;
+  price: number;
+  old_price: number;
+  page_title: string;
+  meta_description: string;
+  category: number;
+  tags?: string[];
+  images?: Array<string>;
+  visible: boolean;
+  variants?: Array<{
+    count: number;
+    color: string;
+    size: number;
+  }>;
 }

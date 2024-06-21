@@ -102,7 +102,7 @@ const Login: React.FC = () => {
           </div>
 
           <div className={styles.from_forgot}>
-            <Link to={"/auth/forgotpassword"}>Forgot password?</Link>
+            <Link to={"/auth/forgot-password"}>Forgot password?</Link>
           </div>
 
           <div className={styles.formAction}>

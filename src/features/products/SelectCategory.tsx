@@ -1,5 +1,5 @@
 import { useGetAllCategoriesQuery } from "../../app/services/categoryService";
-import { Category } from "./types";
+import { Category } from "./interfaces";
 
 const SelectCategory = ({ handleCategoryChange }: any) => {
   const { data: categories, error, isLoading } = useGetAllCategoriesQuery();

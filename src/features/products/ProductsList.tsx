@@ -1,9 +1,10 @@
 import { useState } from "react";
 import styles from "./styles/ProductList.module.css";
 import { useFindAllByPageQuery } from "../../app/services/productsService";
-import { Product } from "./types";
+import { Product } from "./interfaces";
 import SelectCategory from "./SelectCategory";
 import { MdDone, MdClose } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const ProductsList = () => {
   const [page, setPage] = useState(1);
@@ -56,9 +57,11 @@ const ProductsList = () => {
           <tbody>
             {data.map((product: Product, index: number) => (
               <tr key={index}>
-                <td>
-                  <span className={styles.productName}>{product.name}</span>
-                </td>
+                <Link to={`edit/${product.id}`}>
+                  <td>
+                    <span className={styles.productName}>{product.name}</span>
+                  </td>
+                </Link>
                 <td>
                   <span className={styles.productCategory}>
                     {product.category.name}

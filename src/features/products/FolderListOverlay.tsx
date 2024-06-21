@@ -8,11 +8,7 @@ import { useAppDispatch } from "../../app/hooks";
 import { toggleAssestOverlay } from "../appSlice";
 import ImagesListOverlay from "./ImagesListOverlay";
 
-interface FolderListOverlayProps {
-  setImages: (images: string[]) => void;
-}
-
-const FolderListOverlay: React.FC<FolderListOverlayProps> = ({ setImages }) => {
+const FolderListOverlay = ({ setValue, getValues }: any) => {
   const [folders, setFolders] = useState([]);
   const [error, setError] = useState(null);
   const [selectedFolderName, setSelectedFolderName] = useState("");
@@ -68,7 +64,8 @@ const FolderListOverlay: React.FC<FolderListOverlayProps> = ({ setImages }) => {
           </ul>
           <ImagesListOverlay
             folderName={selectedFolderName}
-            setImages={setImages}
+            setValue={setValue}
+            getValues={getValues}
           />
         </div>
       )}

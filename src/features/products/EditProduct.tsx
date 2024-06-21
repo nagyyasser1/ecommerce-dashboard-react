@@ -1,5 +1,9 @@
-import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import styles from "./styles/AddProduct.module.css";
+import {
+  useFindProductByIdQuery,
+  useUpdateProductMutation,
+} from "../../app/services/productsService";
 import {
   useForm,
   useFieldArray,
@@ -8,31 +12,19 @@ import {
   Controller,
 } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import FolderListOverlay from "./FolderListOverlay";
-import { selectIsAssestsOpend, toggleAssestOverlay } from "../appSlice";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { useCreateProductMutation } from "../../app/services/productsService";
-import { productSchema } from "./utils";
 import { CreateProductData } from "./interfaces";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { selectIsAssestsOpend, toggleAssestOverlay } from "../appSlice";
+import { productSchema } from "./utils";
+import FolderListOverlay from "./FolderListOverlay";
 import SelectCategory from "./SelectCategory";
 
-const initialValues: CreateProductData = {
-  name: "",
-  slug: "",
-  description: "",
-  short_description: "",
-  price: 0,
-  old_price: 0,
-  page_title: "",
-  meta_description: "",
-  category: 0,
-  tags: [""],
-  images: [""],
-  visible: true,
-  variants: [],
-};
+const EditProduct = () => {
+  const { productId } = useParams();
 
-const AddProduct = () => {
+  const { data, isLoading, isError } = useFindProductByIdQuery(productId);
+
   const isAssestsOverlayOpend = useAppSelector(selectIsAssestsOpend);
   const dispatch = useAppDispatch();
 
@@ -41,23 +33,32 @@ const AddProduct = () => {
   };
 
   const methods = useForm<CreateProductData>({
-    defaultValues: initialValues,
-    resolver: yupResolver<CreateProductData>(productSchema),
+    defaultValues: data,
+    resolver: yupResolver(productSchema),
   });
 
   const {
     register,
     control,
     handleSubmit,
-    getValues,
     setValue,
+    getValues,
     formState: { errors },
   } = methods;
 
-  const { fields, append, remove } = useFieldArray({
+  const {
+    fields: variantsFields,
+    append: variantsAppend,
+    remove: variantsRemove,
+  } = useFieldArray({
     control,
     name: "variants",
   });
+
+  const handleTagInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const tags = event.target.value.split(",").map((tag) => tag.trim());
+    methods.setValue("tags", tags);
+  };
 
   const removeImage = (index: number) => {
     const currentImages = getValues("images");
@@ -67,41 +68,48 @@ const AddProduct = () => {
     }
   };
 
-  const handleTagInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const tags = event.target.value.split(",").map((tag) => tag.trim());
-    methods.setValue("tags", tags);
-  };
-
-  const [createProduct, { isLoading }] = useCreateProductMutation();
+  const [updateProduct, { isLoading: updateLoading }] =
+    useUpdateProductMutation();
 
   const onSubmit: SubmitHandler<CreateProductData> = async (data) => {
     try {
       const payload = {
         ...data,
+        id: productId,
         price: parseFloat(data.price.toString()),
         old_price: data.old_price
           ? parseFloat(data.old_price.toString())
           : undefined,
         category: parseInt(data.category.toString()),
       };
-      await createProduct(payload).unwrap();
+      await updateProduct(payload).unwrap();
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    methods.setValue("tags", initialValues.tags);
-  }, [methods.setValue]);
+    if (data) {
+      methods.reset(data);
+    }
+  }, [data, methods.reset]);
+
+  if (isLoading) {
+    return <p>loading product</p>;
+  }
+
+  if (isError) {
+    return <p>error fetching product</p>;
+  }
 
   return (
     <FormProvider {...methods}>
       <div className={styles.addProduct}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.addNewCatForm_header}>
-            <p>New Product</p>
+            <p>Edit Product</p>
             <button type="submit">
-              {isLoading ? "Publishing" : "Publish"}
+              {updateLoading ? "Updating" : "Update"}
             </button>
           </div>
           <div className={styles.form}>
@@ -226,12 +234,14 @@ const AddProduct = () => {
                 <p>Variants</p>
                 <button
                   type="button"
-                  onClick={() => append({ count: 0, color: "", size: 0 })}
+                  onClick={() =>
+                    variantsAppend({ count: 0, color: "", size: 0 })
+                  }
                 >
                   +
                 </button>
               </div>
-              {fields.map((field, index) => (
+              {variantsFields.map((field, index) => (
                 <div key={field.id}>
                   <input
                     {...register(`variants.${index}.color`)}
@@ -252,7 +262,7 @@ const AddProduct = () => {
                   />
                   <button
                     type="button"
-                    onClick={() => remove(index)}
+                    onClick={() => variantsRemove(index)}
                     className={styles.remove_variant_button}
                   >
                     Remove
@@ -304,4 +314,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default EditProduct;
