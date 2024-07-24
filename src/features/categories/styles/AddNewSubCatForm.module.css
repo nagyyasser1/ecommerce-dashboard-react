@@ -1,0 +1,20 @@
+.addNewSubCatForm {
+  display: flex;
+  gap: 0.2rem;
+  margin-top: 1rem;
+}
+
+.addNewSubCatForm input {
+  padding: 0.5rem;
+}
+
+.addNewSubCatForm button {
+  background-color: var(--primary-color);
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.addNewSubCatForm button:hover {
+  background-color: var(--primary-color-dark);
+}

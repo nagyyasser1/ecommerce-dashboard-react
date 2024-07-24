@@ -9,6 +9,7 @@ import { useSignupMutation } from "../../app/services/authService";
 
 const schema = yup
   .object({
+    userType: yup.string().default("admin"),
     fname: yup
       .string()
       .required()
@@ -30,6 +31,7 @@ const schema = yup
   .required();
 
 interface SignupFormData {
+  userType: string;
   fname: string;
   lname: string;
   email: string;

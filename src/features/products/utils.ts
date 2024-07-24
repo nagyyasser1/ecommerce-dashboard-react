@@ -23,7 +23,7 @@ export const productSchema = yup
     variants: yup
       .array(
         yup.object().shape({
-          count: yup.number().required("Variant count is required"),
+          quantity: yup.number().required("Variant count is required"),
           color: yup.string().required("Variant color is required"),
           size: yup.number().required("Variant size is required"),
         })

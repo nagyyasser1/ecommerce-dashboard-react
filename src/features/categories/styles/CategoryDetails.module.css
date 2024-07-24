@@ -1,0 +1,45 @@
+.categoryDetails {
+  width: 97%;
+  margin: auto;
+  color: var(--primary-font-color);
+}
+
+.header {
+  text-align: right;
+  margin: 0.5rem 0;
+}
+
+.header button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background-color: var(--primary-color);
+  color: var(--primary-font-color);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
+.basic_info {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.basic_info img {
+  height: 200px;
+}
+
+.basic_info div p {
+  border-bottom: 1px solid gainsboro;
+  padding: 0.5rem 0;
+}
+.basic_info ul {
+  margin-left: 1rem;
+}
+
+.subCategories {
+  margin-top: 0.5rem;
+}
+@media (max-width: 768px) {
+}

@@ -1,4 +1,26 @@
-.categories_header {
+.categoriesList {
+  width: 97%;
+  margin: auto;
+  margin-top: 0.5rem;
+}
+
+.header {
+  text-align: right;
+  padding: 0.5rem 0;
+}
+
+.header_link {
+  background-color: var(--primary-color);
+  padding: 0.5rem 1rem;
+  color: var(--primary-font-color);
+  text-decoration: none;
+}
+
+.header_link:hover {
+  background-color: var(--primary-color-dark);
+}
+
+.header a .categories_header {
   display: flex;
   justify-content: space-between;
   align-items: center;

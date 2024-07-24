@@ -1,11 +1,16 @@
-import { Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
+import styles from "./styles/Admins.module.css";
+import AdminsList from "./AdminsList";
 
 const Admins = () => {
   return (
-    <div>
-      <h1>Admins</h1>
+    <div className={styles.admins}>
+      <div className={styles.admins_header}>
+        <p>admins</p>
+        <Link to={`new`}>new</Link>
+      </div>
       <div>
-        <Outlet />
+        <AdminsList />
       </div>
     </div>
   );

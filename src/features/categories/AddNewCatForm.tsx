@@ -67,8 +67,7 @@ const AddNewCatForm = () => {
   return (
     <div className={styles.addNewCatForm}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className={styles.addNewCatForm_header}>
-          <p>Create New Category</p>
+        <div className={styles.header}>
           <button>{isLoading ? "loading..." : "Publish"}</button>
         </div>
         <div className={styles.form}>

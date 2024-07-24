@@ -1,20 +1,21 @@
 .addNewCatForm {
+  width: 97%;
+  margin: auto;
   overflow: scroll;
 }
 
-.addNewCatForm_header {
+.header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0;
+  justify-content: right;
+  padding: 0.5rem 0;
 }
 
-.addNewCatForm_header p {
+.header p {
   font-size: 1.3rem;
   color: var(--primary-font-color);
 }
 
-.addNewCatForm_header button {
+.header button {
   color: var(--primary-font-color);
   transition: 0.3s ease-in-out;
   border: none;
@@ -22,6 +23,7 @@
   background-color: var(--primary-color);
   cursor: pointer;
   padding: 0.5rem 1rem;
+  text-align: right;
 }
 
 .form {

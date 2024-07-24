@@ -1,5 +1,8 @@
 export { default as Admins } from "./admins/Admins";
+export { default as AdminsList } from "./admins/AdminsList";
 export { default as AdminDetails } from "./admins/AdminDetails";
+export { default as AddNewAdmin } from "./admins/AddNewAdmin";
+export { default as EditAdmin } from "./admins/EditAdmin";
 export { default as Auth } from "./auth/Auth";
 export { default as Login } from "./auth/Login";
 export { default as Signup } from "./auth/Signup";
@@ -13,7 +16,6 @@ export { default as Products } from "./products/Products";
 export { default as ProductDetails } from "./products/ProductDetails";
 export { default as AddProduct } from "./products/AddProduct";
 export { default as EditProduct } from "./products/EditProduct";
-export { default as Categories } from "./categories/Categories";
 export { default as CategoriesList } from "./categories/CategoriesList";
 export { default as AddNewCatForm } from "./categories/AddNewCatForm";
 export { default as CategoryDetails } from "./categories/CategoryDetails";

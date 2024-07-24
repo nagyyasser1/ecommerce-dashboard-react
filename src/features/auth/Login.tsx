@@ -12,6 +12,7 @@ import * as yup from "yup";
 
 const schema = yup
   .object({
+    userType: yup.string().default("admin"),
     email: yup.string().email("Invalid email format").required(),
     password: yup
       .string()
@@ -21,6 +22,7 @@ const schema = yup
   .required();
 
 interface LoginFormData {
+  userType: string;
   email: string;
   password: string;
 }

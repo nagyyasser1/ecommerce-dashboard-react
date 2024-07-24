@@ -235,7 +235,7 @@ const EditProduct = () => {
                 <button
                   type="button"
                   onClick={() =>
-                    variantsAppend({ count: 0, color: "", size: 0 })
+                    variantsAppend({ quantity: 0, color: "", size: 0 })
                   }
                 >
                   +
@@ -249,8 +249,8 @@ const EditProduct = () => {
                     placeholder="color"
                   />
                   <input
-                    {...register(`variants.${index}.count`)}
-                    defaultValue={field.count}
+                    {...register(`variants.${index}.quantity`)}
+                    defaultValue={field.quantity}
                     placeholder="stock quantity"
                     type="number"
                   />

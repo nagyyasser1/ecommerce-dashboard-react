@@ -1,0 +1,29 @@
+.adminsList {
+  margin-top: 1rem;
+}
+
+.adminsList table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--primary-font-color);
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+td,
+th {
+  text-align: left;
+  padding: 0.5rem;
+}
+
+tr {
+  cursor: pointer;
+}
+
+tr:hover {
+  background-color: rgb(223, 220, 220) !important;
+}
+
+tr:nth-child(even) {
+  background-color: var(--primary-background-color);
+}

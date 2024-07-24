@@ -1,0 +1,65 @@
+.addNewAdmin {
+  padding: 1rem;
+  color: var(--primary-font-color);
+  max-height: 85vh;
+  overflow: scroll;
+}
+
+.addNewAdmin_form {
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.addNewAdmin_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.addNewAdmin_header p {
+  font-size: 1.3rem;
+}
+
+.addNewAdmin_header button {
+  background-color: var(--primary-color);
+  border: none;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  color: var(--primary-font-color);
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.addNewAdmin_header button:hover {
+  background-color: var(--primary-color-dark);
+}
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.fromControl {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.fromControl input {
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  border: 1px solid gainsboro;
+  transition: border-color 0.3s;
+}
+
+.error_msg {
+  color: red;
+}
+@media (max-width: 768px) {
+  .content {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

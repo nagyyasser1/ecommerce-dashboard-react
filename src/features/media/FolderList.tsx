@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { useGetFoldersQuery } from "../../app/services/mediaService";
 import styles from "./styles/FolderList.module.css";
 import { Skeleton } from "../../components";
@@ -6,18 +5,7 @@ import { Link } from "react-router-dom";
 import RandomImages from "./RandomImages";
 
 const FolderList = () => {
-  const [folders, setFolders] = useState([]);
-  const [error, setError] = useState(null);
-
-  const { data, error: fetchError, isLoading } = useGetFoldersQuery({});
-
-  useEffect(() => {
-    if (data) {
-      setFolders(data);
-    } else if (fetchError) {
-      setError(fetchError);
-    }
-  }, [data, fetchError]);
+  const { data: folders, error, isLoading, isError } = useGetFoldersQuery({});
 
   if (isLoading)
     return (
@@ -28,19 +16,25 @@ const FolderList = () => {
       </div>
     );
 
+  console.log(error);
+
+  if (isError)
+    return (
+      <div>
+        <p>error: {error.data.message}</p>
+      </div>
+    );
+
   return (
     <div className={styles.folderList}>
-      {error ? (
-        <p>Error fetching folders: {fetchError}</p>
-      ) : (
-        <ul>
-          {folders.map((folder: any) => (
-            <li className={styles.folderItem} key={folder.name}>
-              <Link to={`/media/${folder.name}`}>{folder.name}</Link>
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul>
+        {folders?.map((folder: any) => (
+          <li className={styles.folderItem} key={folder.name}>
+            <Link to={`/media/${folder.name}`}>{folder.name}</Link>
+          </li>
+        ))}
+      </ul>
+
       <RandomImages />
     </div>
   );

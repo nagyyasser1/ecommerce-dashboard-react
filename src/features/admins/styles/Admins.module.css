@@ -1,0 +1,23 @@
+.admins {
+  padding: 1rem;
+}
+
+.admins_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--primary-font-color);
+}
+
+.admins_header p {
+  font-size: 1.3rem;
+}
+
+.admins_header button {
+  border: none;
+  font-size: 1rem;
+  background-color: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}

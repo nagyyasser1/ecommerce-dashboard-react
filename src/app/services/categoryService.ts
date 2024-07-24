@@ -1,14 +1,5 @@
+import { Category } from "../../interfaces/category";
 import { apiSlice } from "./api";
-
-interface Category {
-  id: number;
-  name: string;
-  slug: string;
-  description: string;
-  pageTitle: string;
-  metaDescription: string;
-  picUrl: string;
-}
 
 export const categoryApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

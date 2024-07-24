@@ -2,16 +2,16 @@ import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Layout, NotFound, OverView } from "./components";
 import {
+  AddNewAdmin,
   AddNewCatForm,
   AddProduct,
-  AdminDetails,
   Admins,
   Auth,
-  Categories,
   CategoriesList,
   CategoryDetails,
   CustomerDetails,
   Customers,
+  EditAdmin,
   EditProduct,
   FolderDetails,
   Forgot,
@@ -35,21 +35,15 @@ const router = createBrowserRouter([
       { path: "media/:folderName", element: <FolderDetails /> },
       {
         path: "categories",
-        element: <Categories />,
-        children: [
-          {
-            index: true,
-            element: <CategoriesList />,
-          },
-          {
-            path: "new",
-            element: <AddNewCatForm />,
-          },
-          {
-            path: ":catId",
-            element: <CategoryDetails />,
-          },
-        ],
+        element: <CategoriesList />,
+      },
+      {
+        path: "categories/new",
+        element: <AddNewCatForm />,
+      },
+      {
+        path: "categories/:id",
+        element: <CategoryDetails />,
       },
       {
         path: "products",
@@ -77,7 +71,14 @@ const router = createBrowserRouter([
       {
         path: "admins",
         element: <Admins />,
-        children: [{ path: ":adminId", element: <AdminDetails /> }],
+      },
+      {
+        path: "admins/new",
+        element: <AddNewAdmin />,
+      },
+      {
+        path: "admins/edit/:adminId",
+        element: <EditAdmin />,
       },
     ],
   },

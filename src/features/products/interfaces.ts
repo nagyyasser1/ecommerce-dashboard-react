@@ -40,7 +40,7 @@ export interface CreateProductData {
   images?: Array<string>;
   visible: boolean;
   variants?: Array<{
-    count: number;
+    quantity: number;
     color: string;
     size: number;
   }>;
