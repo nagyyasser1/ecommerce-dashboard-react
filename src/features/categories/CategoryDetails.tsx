@@ -45,11 +45,15 @@ const CategoryDetails = () => {
           <p>Description: {data?.description}</p>
           <p>Page Title: {data?.pageTitle}</p>
           <p>Meta Description: {data?.metaDescription}</p>
+          <p>Active: {data?.active ? "yes" : "no"}</p>
           <div className={styles.subCategories}>
             <h4>sub-categories</h4>
             <ul>
-              {data?.subCategories.map((sub) => (
-                <li>{sub.name}</li>
+              {data?.subCategories.map((sub, index) => (
+                <li key={index}>
+                  {sub.name}
+                  <p>Active: {sub?.active ? "yes" : "no"}</p>
+                </li>
               ))}
             </ul>
           </div>

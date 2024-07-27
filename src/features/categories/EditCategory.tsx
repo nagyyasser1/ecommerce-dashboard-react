@@ -1,10 +1,11 @@
 import styles from "./styles/EditCategory.module.css";
-import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { IoIosClose } from "react-icons/io";
-import { Category, SubCategory } from "../../interfaces/category";
-import { useState } from "react";
+import { Category } from "../../interfaces/category";
+import EditSubCat from "./EditSubCat";
+import { useUpdateCategoryMutation } from "../../app/services/categoryService";
 
 const schema = yup
   .object({
@@ -14,25 +15,18 @@ const schema = yup
     metaDescription: yup.string().required(),
     picUrl: yup.string().required(),
     description: yup.string().required(),
-    subCategories: yup
-      .array(
-        yup.object().shape({
-          name: yup.string().required("name color is required"),
-        })
-      )
-      .optional(),
+    active: yup.boolean().optional(),
   })
   .required();
 
 interface UpdateCategoryData {
-  id: string;
   name: string;
   slug: string;
+  description: string;
   pageTitle: string;
   metaDescription: string;
   picUrl: string;
-  description: string;
-  subCategories: SubCategory[];
+  active?: boolean;
 }
 
 interface EditCategoryProp {
@@ -41,13 +35,10 @@ interface EditCategoryProp {
 }
 
 const EditCategory = ({ toggleEditMenu, category }: EditCategoryProp) => {
-  const [loading, setLoading] = useState(false);
   const {
-    control,
     register,
     handleSubmit,
     formState: { errors },
-    setValue,
   } = useForm<UpdateCategoryData>({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -57,24 +48,18 @@ const EditCategory = ({ toggleEditMenu, category }: EditCategoryProp) => {
       metaDescription: category.metaDescription,
       picUrl: category.picUrl,
       description: category.description,
-      subCategories: category.subCategories,
+      active: category.active,
     },
   });
 
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: "subCategories",
-  });
+  const [updateCategory, { isLoading, isError, error }] =
+    useUpdateCategoryMutation();
 
   const onSubmit: SubmitHandler<UpdateCategoryData> = async (data) => {
-    setLoading(true);
     try {
-      // Add your update logic here
-      console.log(data);
+      await updateCategory({ ...data, id: category.id }).unwrap();
     } catch (err) {
       console.error("Failed to update the category: ", err);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -106,6 +91,13 @@ const EditCategory = ({ toggleEditMenu, category }: EditCategoryProp) => {
                 {errors.description && (
                   <p className={styles.error}>{errors.description.message}</p>
                 )}
+              </div>
+              <div className={styles.formControl}>
+                <label htmlFor="active">Active</label>
+                <select id="active" {...register("active")}>
+                  <option value={1}>Active</option>
+                  <option value={0}>Inactive</option>
+                </select>
               </div>
             </div>
             <div className={styles.seo_section}>
@@ -148,32 +140,18 @@ const EditCategory = ({ toggleEditMenu, category }: EditCategoryProp) => {
           </div>
           <div>
             <p className={styles.formSection_header}>Sub-Categories</p>
-            {fields.map((field, index) => (
-              <div key={field.id}>
-                <input
-                  {...register(`subCategories.${index}.name`)}
-                  defaultValue={field.name}
-                  placeholder="name"
-                />
-
-                <button
-                  type="button"
-                  onClick={() => remove(index)}
-                  className={styles.remove_variant_button}
-                >
-                  Remove
-                </button>
-                <br />
-              </div>
-            ))}
+            <EditSubCat
+              subCategories={category.subCategories}
+              categoryId={category.id}
+            />
           </div>
           <div className={styles.formActions}>
             <button
               type="submit"
               className={styles.submitButton}
-              disabled={loading}
+              disabled={isLoading}
             >
-              {loading ? "Updating..." : "Update"}
+              {isLoading ? "Updating..." : "Update"}
             </button>
           </div>
         </form>

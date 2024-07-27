@@ -1,4 +1,5 @@
 export interface SubCategory {
+  active: any;
   id: string;
   name: string;
 }
@@ -10,5 +11,6 @@ export interface Category {
   pageTitle: string;
   metaDescription: string;
   picUrl: string;
+  active: boolean;
   subCategories: SubCategory[];
 }
